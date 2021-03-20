@@ -53,7 +53,7 @@ $(document).ready(function() {
 
   function cargarCategories(){
 
-    console.log("Iniciando carga de categorias");
+    console.log("Mostrando las categorias");
 
      //Lanzar petición AJAX.
     $.ajax({
@@ -163,7 +163,7 @@ $("#search").keypress(function(e) {
 
 //Buscar por texto
 function searchByText(){
-
+  console.log("Se inició la búsqueda por texto");
         
   //Search by text
   $.ajax({
