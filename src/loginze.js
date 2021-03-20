@@ -5,7 +5,6 @@
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     var cont = 0;
-    var prueba = localStorage.getItem("saveItemId");
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
@@ -53,13 +52,15 @@
                           var code = resp.data.session_id;
                           localStorage.setItem("UserCode", code);
 
+                          var ko = localStorage.getItem("saveItemId");
+
                           alert("¡¡¡Bienvenido " + nom + "!!!");
 
-                          if(prueba == ""){
+                          if(ko == ""){
                             // alert(" " + prueba);
                               window.location="homez.html";
-                              
                             }else{
+                              // alert("sde");
                               window.location="productoz.html";
                             }
                       }
@@ -146,6 +147,6 @@ $(function() {
 
 $(document).ready(function(){    
   $('#iniciar').click(function(){  
-      window.location="loginz.html";
+      window.location="loginze.html";
   });   
 });

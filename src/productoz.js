@@ -13,7 +13,7 @@ $(document).ready(function(){
         localStorage.setItem("x4", borrar2);
         localStorage.setItem("x7", borrar2);
         
-        window.location="indexz.php";
+        window.location="indexz.html";
     });   
 });
 
@@ -40,7 +40,7 @@ $(document).ready(function() {
     if(mos == 1){
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.php";
+    window.location="indexz.html";
   }else{
     mos = mos + 1;
     if(mos == 1){
@@ -90,7 +90,7 @@ $(document).ready(function() {
     if(mos == 1){
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.php";
+    window.location="indexz.html";
   }else{
     one = one + 1;
   }
@@ -313,11 +313,11 @@ function addCart(){
             var opcion = confirm("¿Quieres seguir comprando?");
             if (opcion == true) {
                 // mensaje = "Has clickado OK";
-                alert("Se añadió al carrito con éxito");
+                // alert("Se añadió al carrito con éxito");
                 window.location="homez.html";
             } else {
               // mensaje = "Has clickado Cancelar";
-                 alert("Se añadió al carrito con éxito");
+                //  alert("Se añadió al carrito con éxito");
             }
           }
       },       

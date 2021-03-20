@@ -6,7 +6,7 @@ $(document).ready(function(){
         localStorage.setItem("x1", borrar2);
         localStorage.setItem("x2", borrar2);  
 
-        window.location="loginz.html";
+        window.location="loginze.html";
     });   
 });
 
@@ -370,15 +370,17 @@ function dataItemIdindex(tnt){
 
   var prueba = localStorage.getItem("saveItemId");
 
+  // alert("xxx " + prueba);
+
   if(prueba == ""){
 
   }else{
     console.log("El ID que se quieré buscar es el: " + tnt);
-    window.location="loginz.html";
+    window.location="loginze.html";
   }
 }
 
 
 function btnCartds(){
-  window.location="loginz.html";
+  window.location="loginze.html";
 }
