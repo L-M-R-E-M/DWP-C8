@@ -236,6 +236,8 @@ var acom = 0;
       html_ITEM = html_ITEM.replace('-->', '');
 
       // Reemplazar los valores.
+      html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID', item.product_id);
+      html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID2', item.product_id);
       html_ITEM = html_ITEM.replace('ITEM_SHORT_DESCRIPTION', item.short_description);
       html_ITEM = html_ITEM.replace('ITEM_LONG_DESCRIPTION', item.long_description);
       html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE', item.images_small);
@@ -358,6 +360,22 @@ if(html_ITEM == '<!---->'|true && v1 != v2){
 }else{
   $("#divError").empty();
 }
+}
+
+
+/*Guardar el ID y comprobar que realmente se guardo, para despues mostrar producto */
+function dataItemIdindex(tnt){
+
+  localStorage.setItem("saveItemId", tnt);
+
+  var prueba = localStorage.getItem("saveItemId");
+
+  if(prueba == ""){
+
+  }else{
+    console.log("El ID que se quieré buscar es el: " + tnt);
+    window.location="loginz.html";
+  }
 }
 
 

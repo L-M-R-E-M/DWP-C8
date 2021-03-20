@@ -154,7 +154,7 @@
               <div class="card-body">
                 <div class="row mb-4">
                   <div class="col-md-4 col-lg-3 col-xl-3">
-                    <a href="loginz.html">                             
+                    <a href="loginz.html" onClick="dataItemIdindex(ITEM_PRODUCT_ID);">                             
                       <img class="img-fluid w-100" src="ITEM_SMALL_IMAGE"> 
                     </a>
                   </div>
@@ -162,7 +162,7 @@
                     <div class="d-flex justify-content-between">
                       <div>
                         <br/>
-                        <a href="loginz.html"> 
+                        <a href="loginz.html" onClick="dataItemIdindex(ITEM_PRODUCT_ID2);"> 
                         <h5>ITEM_SHORT_DESCRIPTION</h5>
                         </a>                                                       
                         <p class="text-muted text-uppercase small">ITEM_LONG_DESCRIPTION</p>

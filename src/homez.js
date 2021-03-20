@@ -9,6 +9,7 @@ $(document).ready(function(){
         localStorage.setItem("SavePass", borrar);
         localStorage.setItem("UserName", borrar);
         localStorage.setItem("UserCode", borrar);
+        localStorage.setItem("saveItemId", borrar);
         localStorage.setItem("x4", borrar2);
         localStorage.setItem("x7", borrar2);
         
@@ -82,6 +83,7 @@ $(document).ready(function() {
           /*Guardando los datos en el LocalStorage*/
           localStorage.setItem("UserName", exit);
           localStorage.setItem("UserCode", exit);
+          localStorage.setItem("saveItemId", exit);
 }
   return confirmationMessage;                            //Webkit, Safari, Chrome
 });
@@ -165,6 +167,7 @@ $(document).ready(function() {
     /*Borrar los datos en el LocalStorage*/
     localStorage.setItem("UserName", borrar);
     localStorage.setItem("UserCode", borrar);
+    localStorage.setItem("saveItemId", borrar);
     }else{
       /*Mostrar datos almacenados*/      
     document.getElementById("nombre").innerHTML = nombre;

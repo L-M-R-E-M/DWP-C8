@@ -5,6 +5,7 @@
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     var cont = 0;
+    var prueba = localStorage.getItem("saveItemId");
     // Loop over them and prevent submission
     var validation = Array.prototype.filter.call(forms, function(form) {
       form.addEventListener('submit', function(event) {
@@ -53,7 +54,14 @@
                           localStorage.setItem("UserCode", code);
 
                           alert("¡¡¡Bienvenido " + nom + "!!!");
-                          window.location="homez.html";
+
+                          if(prueba == ""){
+                            // alert(" " + prueba);
+                              window.location="homez.html";
+                              
+                            }else{
+                              window.location="productoz.html";
+                            }
                       }
                       },       
                   });
@@ -74,6 +82,7 @@ $(document).ready(function() {
   var pass = localStorage.getItem("SavePass");
   var nos = localStorage.getItem("UserName");
   var nas = localStorage.getItem("UserCode");	
+
   function iniciarSesion(){
     if(corr == "" && pass == "" || nos == "" && nas == ""){
       //En este  apartado no pasa nada aún
@@ -89,6 +98,7 @@ $(document).ready(function() {
 
 function mostrarPassword(){
     var cambio = document.getElementById("pass1");
+
     if(cambio.type == "password"){
         cambio.type = "text";
         $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
@@ -97,6 +107,7 @@ function mostrarPassword(){
         $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
     }
 } 
+
 
 $(document).ready(function () {
 //CheckBox mostrar contraseña
