@@ -17,13 +17,6 @@ $(document).ready(function(){
     });   
 });
 
-$(document).ready(function(){    
-  $('#atras').click(function(){    
-      
-      window.location="homeze.html";
-  });   
-});
-
 /*Checar si hay una sesión activa*/
 $(document).ready(function() {	
   var check = localStorage.getItem("UserName");
