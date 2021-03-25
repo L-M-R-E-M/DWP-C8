@@ -17,11 +17,21 @@ $(document).ready(function(){
     });   
 });
 
-$(document).ready(function(){    
-  $('#atras').click(function(){    
-      
-      window.location="homeze.html";
-  });   
+mostrarCarrito();
+
+$(document).ready(function() {
+function checarAhora(){
+var nm = localStorage.getItem("gggg");
+var cd = 0;
+if(nm == "si"){
+  cd = 1;
+  localStorage.setItem("kk", cd);
+}else{
+  cd = 0;
+  localStorage.setItem("kk", cd);
+}
+}
+setInterval(checarAhora, 100);
 });
 
 /*Checar si hay una sesión activa*/
@@ -44,21 +54,19 @@ $(document).ready(function() {
   }else{
     mos = mos + 1;
     if(mos == 1){
-    var na = "";
+
+    // var l = "";
         
-    localStorage.setItem("gggg", na);
-
-    //cargar el producto.
-    cargarProducto();
-
+    // localStorage.setItem("gggg", l);
     }
     
     
     /*Se ejecuta cuando cerramos la ventana de google*/
     // https://es.stackoverflow.com/questions/103956/c%C3%B3mo-detectar-el-evento-del-cierre-de-tu-p%C3%A1gina-web
-    var nm = localStorage.getItem("gggg");
   
-  if(nm == ""){
+  var nm = localStorage.getItem("kk");
+  
+  if(nm == 0){
   window.addEventListener("beforeunload", function (e) {
   var confirmationMessage = "\o/";
 
@@ -76,7 +84,12 @@ $(document).ready(function() {
 
 
 }
-          
+
+
+
+
+
+
 
 
 
@@ -115,9 +128,6 @@ $(document).ready(function() {
           var code = resp.data.session_id;
           localStorage.setItem("UserCode", code);
 
-          //cargar el producto.
-          cargarProducto();
-
           // alert("¡¡¡Bienvenido otra vez " + nom + "!!!");
           
       }
@@ -126,7 +136,7 @@ $(document).ready(function() {
   }
   }
   }
-  setInterval(checarsesion, 1000);
+  setInterval(checarsesion, 100);
 });
 
 /*Funcion Cargar y Mostrar datos*/
@@ -134,6 +144,7 @@ $(document).ready(function() {
   function mostrarUsuario(){
     /*Obtener datos almacenados*/
     var nombre = localStorage.getItem("UserName");
+
     // var nose = "UsuarioX";
     var borrar = "";
     if(nombre == ""){
@@ -150,7 +161,7 @@ $(document).ready(function() {
     document.getElementById("nombre").innerHTML = nombre;
     }
   }
-  setInterval(mostrarUsuario, 1000);
+  setInterval(mostrarUsuario, 100);
 });
 
 
@@ -180,135 +191,7 @@ function searchByText(){
 }
 
 
-function cargarProducto(){
-
-  console.log("Iniciando carga de producto");
-
-  var prod = localStorage.getItem("saveItemId");
-
-
-//Search by text
-$.ajax({
-  type: "GET",
-  url: "http://35.167.62.109/storeutags/catalogs/item_details/" + prod,
-  contentType: "application/json; charset=utf-8",
-  dataType: "json",          
-  success: function(data, status, jqXHR){
-                    
-      console.log(data);
-      mostrarProducto(data);
-      icon();
-
-      // $("#divError").empty();
-      
-  },
-  error: function(jqXHR, status){
-
-      console.log("Error enviado petición");
-      console.log(jqXHR);        
-
-  }
-});
-
-}
-
-
-function mostrarProducto(data){
-
-  //Limpiar los productos.
-  $("#divProduct").empty();
-
-  //Agregarlos uno a uno.
-  $.each(data.data.items, function(i, item) {
-    
-    //Cargar el template.
-    var html_ITEM = $("#template_product").html();
-
-    // Reemplazar los comentarios.
-    html_ITEM = html_ITEM.replace('<!--', '');
-    html_ITEM = html_ITEM.replace('-->', '');
-
-    // Reemplazar los valores.
-    html_ITEM = html_ITEM.replace('ITEM_SHORT_DESCRIPTION', item.short_description);
-    html_ITEM = html_ITEM.replace('ITEM_LONG_DESCRIPTION', item.long_description);
-    html_ITEM = html_ITEM.replace('ITEM_HTML_DETAILS', item.html_details);
-    html_ITEM = html_ITEM.replace('ITEM_PRICE', item.price);
-    html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE1', item.images_small);
-    html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE2', item.images_small);
-    html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE3', item.images_small);
-    html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE4', item.images_small);
-    html_ITEM = html_ITEM.replace('ITEM_LARGE_IMAGE', item.images_large);
-    html_ITEM = html_ITEM.replace('ITEM_GALLERY_IMAGE1', item.images_gallery.image);
-
-    //Agregar el ITEM.
-    $("#divProduct").append(html_ITEM);
-
-  });
-}
-
-var ilu = 0;
-var bvh = 0;
-var valorSrcC= "";
-/*Guardar imgaen producto */
-function dataMoveImage(img){
-  ilu = ilu + 1;
-
-  var whoIsGod = localStorage.getItem("GOD");
-  var whoIsKind = localStorage.getItem("KIND");
-
-  var valorSrcA= "";
-  var valorSrcB= $("#imgLarge").attr("src");
-  if(ilu == 1){
-    valorSrcC= $("#imgLarge").attr("src");
-  }
-  if(img == 1){
-    valorSrcA= $("#1").attr("src");
-  }
-  if(img == 2){
-    valorSrcA= $("#2").attr("src");
-  }
-  if(img == 3){
-    valorSrcA= $("#3").attr("src");
-  }
-  if(img == 4){
-    valorSrcA= $("#4").attr("src");
-  }
-  if(img == 5){
-    ilu = 0;
-    bvh = 1;
-    valorSrcA= $("#5").attr("src");
-    // alert("sererg");
-    window.location="productoz.html";
-    $('#imgLarge').replaceWith('<img id="imgLarge" class="img-fluid w-100" src="'+valorSrcC+'">');
-    $('#newImg'+img).replaceWith('<a href="#!" onClick="dataMoveImage("'+whoIsKind+'");" id="newImg"'+whoIsKind+'""><img id="'+whoIsKind+'" class="img-fluid w-50" src="'+whoIsGod+'"></a>');
-  }else{
-    //este if es el de default ya que siempre se va a meter, una vez comenzando el programa
-    if(ilu <= 1 || bvh == 1){
-      $('#imgLarge').replaceWith('<img id="imgLarge" class="img-fluid w-100" src="'+valorSrcA+'">');
-      $('#newImg'+img).replaceWith('<a href="#!" onClick="dataMoveImage(5);" id="newImg5"><img id="5" class="img-fluid w-50" src="'+valorSrcC+'"></a>');
-      bvh = 0;
-    }
-    if(ilu >= 2){
-      $('#imgLarge').replaceWith('<img id="imgLarge" class="img-fluid w-100" src="'+valorSrcA+'">');
-      $('#'+img).replaceWith('<img id="'+img+'" class="img-fluid w-50" src="'+whoIsGod+'">');
-      bvh = 0;
-    }
-  }
-  if(img > 0 && img < 6){
-    localStorage.setItem("GOD", valorSrcA);
-    localStorage.setItem("KIND", img);
-  }
-
-  console.log("Mostrando la imagen: " + img);
-
-  
-  
-  
-}
-
-
-
-var cambio = 0;
+  var cambio = 0;
   function icon(){
 
     //mostrar animación
@@ -343,46 +226,7 @@ var cambio = 0;
 
 
 
-/*Función añadir al carro*/
-function addCart(){
-  var cant = $('#cantidad').val();
-  var sesID = localStorage.getItem("UserCode");
-  var itemID = localStorage.getItem("saveItemId");
-
-  if(cant == "" || cant == 0){
-    alert('Ponga un numero mayor a "0".');
-  }else{
-    console.log("Iniciando petición carrito");
-    // alert("Es: " + cant);
-    $.ajax({
-      url: "http://35.167.62.109/storeutags/cart/add_item",
-      type: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-          session_id:sesID,
-          item_id:itemID,
-          item_quantity:cant,
-
-      }),
-      dataType: 'json',
-      success: function(resp) {
-          if(resp.error_code == "SessionDoesNotExist" || resp.error_code == "ItemDoesNotExist" ||
-             resp.error_code == "InavlidQuantity" || resp.error_code == "MandatoryFilds"){
-              alert("¡¡Upps... ocurrio un problema al momento de añadir al carrito.!!");
-              console.log("¡¡Upps... ocurrio un problema al momento de añadir al carrito.!!");
-              window.location="productoz.html";
-          }
-          else{
-            icon();
-          }
-      },       
-  });
-  }
-  
-}
-
-/*Funcion Cargar y Mostrar datos cada 3 segundos*/
-$(document).ready(function() {	
+  /*Funcion Cargar y Mostrar datos*/
   function mostrarCarrito(){
     var sesIDD = localStorage.getItem("UserCode");
     if(sesIDD == ""){
@@ -392,16 +236,14 @@ $(document).ready(function() {
       /*Guardando los datos en el LocalStorage*/
       localStorage.setItem("UserName", exitz);
       localStorage.setItem("UserCode", exitz);
-      localStorage.setItem("saveItemId", exitz);
     }else{
-      // console.log("Iniciando petición mostrar datos carrito cada 3 segundos");
+      console.log("Iniciando petición de mostrar datos carrito actual");
     $.ajax({
       url: "http://35.167.62.109/storeutags/cart/get_details",
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify({
           session_id:sesIDD,
-
       }),
       dataType: 'json',
       success: function(resp) {
@@ -411,31 +253,207 @@ $(document).ready(function() {
               window.location="productoz.html";
           }
           else{
-            var asdx = resp.data.items_quantity;
-            var xcvx = resp.data.sub_total;
 
-            document.getElementById("quant").innerHTML = asdx;
-            document.getElementById("total").innerHTML = xcvx;
+              console.log(resp);
 
-            localStorage.setItem("cartcart", asdx);
+              var asdx = resp.data.items_quantity;
+              var xcvx = resp.data.sub_total;
+
+              document.getElementById("quant").innerHTML = asdx;
+              document.getElementById("total").innerHTML = xcvx;
+
+              localStorage.setItem("cartcart", asdx);
+
+              if(asdx == 0){
+                window.location="homeze.html";
+              }else{
+
+              render_items(resp);
+              render_itemsP2(resp);
+              icon();
+              }
+
           }
       },       
   });
     }
   }
-  setInterval(mostrarCarrito, 3000);
+
+
+  function render_items(data){
+
+    //Limpiar los productos.
+    $("#divItemsCart").empty();
+
+    //Agregarlos uno a uno.
+    $.each(data.data.items, function(i, item) {
+      
+      //Cargar el template.
+      var html_ITEM = $("#template_productCart").html();
+
+      // Reemplazar los comentarios.
+      html_ITEM = html_ITEM.replace('<!--', '');
+      html_ITEM = html_ITEM.replace('-->', '');
+
+      // Reemplazar los valores.
+      html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID', item.product_id);
+      html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID2', item.product_id);
+      html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID3', item.product_id);
+      html_ITEM = html_ITEM.replace('ITEM_SHORT_DESCRIPTION', item.short_description);
+      html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE', item.images_small);
+      html_ITEM = html_ITEM.replace('ITEM_PRICE', item.price);
+      html_ITEM = html_ITEM.replace('ITEM_QUANTITY', item.quantity);
+      html_ITEM = html_ITEM.replace('ITEM_PRICE_SUB', item.sub_total);
+
+      //Agregar el ITEM.
+      $("#divItemsCart").append(html_ITEM);
+
+    });
+  }
+
+
+  function render_itemsP2(data){
+
+    //Limpiar los productos.
+    $("#divItemsCartP2").empty();
+      
+      //Cargar el template.
+      var html_ITEM = $("#template_productCartP2").html();
+
+      // Reemplazar los comentarios.
+      html_ITEM = html_ITEM.replace('<!--', '');
+      html_ITEM = html_ITEM.replace('-->', '');
+
+      // Reemplazar los valores.
+      html_ITEM = html_ITEM.replace('ITEM_SUB_TOTAL', data.data.sub_total);
+      html_ITEM = html_ITEM.replace('ITEM_TAXES', data.data.taxes);
+      html_ITEM = html_ITEM.replace('ITEM_TOTAL', data.data.total);
+
+      //Agregar el ITEM.
+      $("#divItemsCartP2").append(html_ITEM);
+  }
+
+
+  function btnCartd(){
+    // alert("SE MOSTRARÁ EL CARRITO");
+      window.location="cart.html";
+  }
+
+  function deletePCart(idProduct){
+    console.log("Iniciando la eliminación del ID: " + idProduct);
+    var sesionActualCarro = localStorage.getItem("UserCode");
+
+    $.ajax({
+        url: "http://35.167.62.109/storeutags/cart/remove_item",
+        type: 'DELETE',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            session_id:sesionActualCarro,
+            item_id:idProduct,
+        }),
+        dataType: 'json',
+        success: function(resp) {
+            if(resp.error_code == "SessionDoesNotExist" || resp.error_code == "ItemDoesNotExist"
+            || resp.error_code == "ItemOrderDoesNotExist"){
+                alert(" " + resp.error_code);
+            }
+            else{
+                mostrarCarrito();
+            }
+        },       
+    });
+  }
+
+
+    var conte = 0;
+    var save = 0;
+    function upadateCart(idCart){
+
+        var sesIDDD = localStorage.getItem("UserCode");
+        var dataInput = $('#'+idCart).val()
+
+        conte = conte + 1;
+
+        if(conte >= 2 && save != idCart){
+            conte = 1;
+        }
+
+        if(conte == 1){
+        save = idCart;
+        localStorage.setItem("position", save);
+        }
+
+        if(dataInput == 0){
+            deletePCart(idCart);
+        }else{
+           
+
+        if(conte >= 2){
+            console.log("Iniciando actualización del ID: " + save);
+            // alert(" " +  dataInput);
+
+        $.ajax({
+            url: "http://35.167.62.109/storeutags/cart/update_item",
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                session_id:sesIDDD,
+                item_id:save,
+                item_quantity:dataInput
+            }),
+            dataType: 'json',
+            success: function(resp) {
+                if(resp.error_code == "SessionDoesNotExist" || resp.error_code == "InvalidQuantity"
+                || resp.error_code == "ItemDoesNotExist" || resp.error_code == "ItemOrderDoesNotExist"
+                || resp.error_code == "MandatoryFields"){
+                    alert(" " + resp.error_code);
+                }
+                else{
+                    conte = 0;
+                    mostrarCarrito();
+                }
+            },       
+        });
+        }
+    
+    }
+        
+    }
+
+
+var conte2 = 0;
+var save2 = 0;
+$(document).click(function outWindows(event) {
+            
+            
+    event.stopPropagation();
+    event.preventDefault();
+    event.stopImmediatePropagation();
+
+    conte2 = conte2 + 1;
+
+    var posi = localStorage.getItem("position");
+
+    if(conte2 >= 2 && save2 != posi){
+        conte2 = 1;
+    }
+
+    if(conte2 == 1){
+    save2 = posi;
+    localStorage.setItem("position", save2);
+    // alert(" " +  save2);
+    }
+
+    if(conte2 >= 2){
+        upadateCart(save2);
+        conte2 = 0;
+    }
 });
 
+    
 
-function btnCart(){
-  // alert("SE MOSTRARÁ EL CARRITO");
-  var cart = 0;
-  cart = localStorage.getItem("cartcart");
-  
-  if(cart == 0){
-    window.location="productoz.html";
-  }else{
-    window.location="cart.html";
-  }
-}
+        
+   
 
+    
+    

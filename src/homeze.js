@@ -286,11 +286,23 @@ $("#search").keypress(function(e) {
 //Buscar por texto
 function searchByText(){
   console.log("Se inició la búsqueda por texto");
+
+  var bar = localStorage.getItem("searchbarra");
+  var barActual = $("#search").val();
+  var actual = "";
+
+  if(bar == ""){
+    actual = $("#search").val();
+  }else{
+    actual = bar;
+    localStorage.setItem("searchbarra", barActual);
+    document.getElementById("search").innerHTML = actual;
+  }
         
   //Search by text
   $.ajax({
       type: "GET",
-      url: "http://35.167.62.109/storeutags/catalogs/items/by_text/" + $("#search").val(),
+      url: "http://35.167.62.109/storeutags/catalogs/items/by_text/" + actual,
       contentType: "application/json; charset=utf-8",
       dataType: "json",          
       success: function(data, status, jqXHR){
@@ -532,6 +544,8 @@ function xsd(){
 
               document.getElementById("quant").innerHTML = asdx;
               document.getElementById("total").innerHTML = xcvx;
+
+              localStorage.setItem("cartcart", asdx);
           }
       },       
   });
@@ -539,7 +553,15 @@ function xsd(){
   }
 
   function btnCartd(){
-    alert("SE MOSTRARÁ EL CARRITO");
+    // alert("SE MOSTRARÁ EL CARRITO");
+    var cart = 0;
+    cart = localStorage.getItem("cartcart");
+  
+    if(cart == 0){
+      window.location="homeze.html";
+    }else{
+      window.location="cart.html";
+    }
   }
 
   

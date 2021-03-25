@@ -58,7 +58,7 @@
 
                           if(ko == ""){
                             // alert(" " + prueba);
-                              window.location="homez.html";
+                              window.location="homeze.html";
                             }else{
                               // alert("sde");
                               window.location="productoz.html";
@@ -89,7 +89,7 @@ $(document).ready(function() {
       //En este  apartado no pasa nada aún
       // alert("entro");
     }else{
-      window.location="homez.html";
+      window.location="homeze.html";
     }
   }
   setInterval(iniciarSesion, 100);

@@ -28,7 +28,7 @@ $(document).ready(function() {
       }else{
         /*Mostrar datos almacenados*/      
       // document.getElementById("nombre").innerHTML = nombres;
-      window.location="homez.html";
+      window.location="homeze.html";
       }
     }
     setInterval(mostrarUsuario, 100);
@@ -44,7 +44,7 @@ $(document).ready(function() {
     if(corr == "" && pass == ""){
       //En este  apartado no pasa nada aún
     }else{
-      window.location="homez.html";
+      window.location="homeze.html";
     }
   }
   setInterval(iniciarSesion, 100);
