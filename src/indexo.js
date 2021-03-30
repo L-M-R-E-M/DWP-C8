@@ -6,7 +6,7 @@ $(document).ready(function(){
         localStorage.setItem("x1", borrar2);
         localStorage.setItem("x2", borrar2);  
 
-        window.location="loginze.html";
+        window.location="logino.html";
     });   
 });
 
@@ -21,14 +21,14 @@ $(document).ready(function() {
     function mostrarUsuario(){
       /*Obtener datos almacenados*/
       var nombres = localStorage.getItem("UserName");
-      var noses = "UsuarioX";
+      var noses = "Usuario";
       if(nombres == ""){
         /*Mostrar datos almacenados*/      
       document.getElementById("nombre").innerHTML = noses;
       }else{
         /*Mostrar datos almacenados*/      
       // document.getElementById("nombre").innerHTML = nombres;
-      window.location="homeze.html";
+      window.location="homeo.html";
       }
     }
     setInterval(mostrarUsuario, 100);
@@ -44,7 +44,7 @@ $(document).ready(function() {
     if(corr == "" && pass == ""){
       //En este  apartado no pasa nada aún
     }else{
-      window.location="homeze.html";
+      window.location="homeo.html";
     }
   }
   setInterval(iniciarSesion, 100);
@@ -263,8 +263,17 @@ var acom = 0;
     //Limpiar los productos.
     $("#divConteo").empty();
 
-    //Cargar el template.
-    var html_ITEM = $("#template_conteo").html();
+    if(xd > 1){
+
+      //Cargar el template.
+      var html_ITEM = $("#template_conteo").html();
+  
+      }else{
+  
+      //Cargar el template.
+      var html_ITEM = $("#template_conteo2").html();
+  
+      }
 
     // Reemplazar los comentarios.
     html_ITEM = html_ITEM.replace('<!--', '');
@@ -376,11 +385,11 @@ function dataItemIdindex(tnt){
 
   }else{
     console.log("El ID que se quieré buscar es el: " + tnt);
-    window.location="loginze.html";
+    window.location="logino.html";
   }
 }
 
 
 function btnCartds(){
-  window.location="loginze.html";
+  window.location="logino.html";
 }

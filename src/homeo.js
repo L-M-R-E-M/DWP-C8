@@ -1,5 +1,55 @@
+document.onkeydown = function(e){
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla == 116){
+    bPreguntar = false;
+  }
+ }
+
+/*Funcion Cargar y Mostrar datos*/	
+  // var typeo = 0;
+  // function mostrarUs(){
+  //   typeo = window.performance.navigation.type;
+
+  //   if(typeo > 0 && typeo < 3){
+  //     bPreguntar = false;
+  //   }
+  // }
+
+// if (window.performance.navigation.type == 1) {
+//   if(confirm('Desea Actualizar ? ')){
+//     bPreguntar = false;
+//   }else{
+//     bPreguntar = false;
+//  }
+// }
+
+var bPreguntar = true;
+     
+window.onbeforeunload = preguntarAntesDeSalir;
+ 
+function preguntarAntesDeSalir()
+{
+  if (bPreguntar)
+    if(bPreguntar == true){
+      closeWindow();
+    }
+    return;
+}
+
+// window.performance.navigation.type = 0;
+
+
 $(document).ready(function(){    
-    $('#cerrarse').click(function(){        
+    $('#cerrarse').click(function(){ 
+        bPreguntar = false;
+      
+        closeWindow();
+        
+        window.location="indexo.html";
+    });   
+});
+
+function closeWindow(){
         // window.close();
         /*Captura de datos escrito en los inputs*/        
         var borrar = "";
@@ -12,27 +62,9 @@ $(document).ready(function(){
         localStorage.setItem("saveItemId", borrar);
         localStorage.setItem("x4", borrar2);
         localStorage.setItem("x7", borrar2);
-        
-        window.location="indexz.html";
-    });   
-});
+}
 
 mostrarCarrito();
-
-$(document).ready(function() {
-function checarAhora(){
-var nm = localStorage.getItem("gggg");
-var cd = 0;
-if(nm == "si"){
-  cd = 1;
-  localStorage.setItem("kk", cd);
-}else{
-  cd = 0;
-  localStorage.setItem("kk", cd);
-}
-}
-setInterval(checarAhora, 100);
-});
 
 /*Checar si hay una sesión activa*/
 $(document).ready(function() {	
@@ -48,9 +80,12 @@ $(document).ready(function() {
   if(check == ""){
     mos = mos + 1;
     if(mos == 1){
+    
+    closeWindow();
+
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.html";
+    window.location="indexo.html";
   }else{
     mos = mos + 1;
     if(mos == 1){
@@ -60,36 +95,7 @@ $(document).ready(function() {
 
     //hacer una busqueda vacía inicial para que muestre todos los productos.
     searchByText();
-
-    // var l = "";
-        
-    // localStorage.setItem("gggg", l);
     }
-    
-    
-    /*Se ejecuta cuando cerramos la ventana de google*/
-    // https://es.stackoverflow.com/questions/103956/c%C3%B3mo-detectar-el-evento-del-cierre-de-tu-p%C3%A1gina-web
-  
-  var nm = localStorage.getItem("kk");
-  
-  if(nm == 0){
-  window.addEventListener("beforeunload", function (e) {
-  var confirmationMessage = "\o/";
-
-  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-  if(confirmationMessage == true){
-          /*Captura de datos escrito en los inputs*/        
-          var exit = "";
-          /*Guardando los datos en el LocalStorage*/
-          localStorage.setItem("UserName", exit);
-          localStorage.setItem("UserCode", exit);
-          localStorage.setItem("saveItemId", exit);
-}
-  return confirmationMessage;                            //Webkit, Safari, Chrome
-});
-
-
-}
 
 
 
@@ -107,9 +113,12 @@ $(document).ready(function() {
   if(check == ""){
     mos = mos + 1;
     if(mos == 1){
+    
+    closeWindow();
+
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.html";
+    window.location="indexo.html";
   }else{
     one = one + 1;
   }
@@ -140,6 +149,8 @@ $(document).ready(function() {
           //hacer una busqueda vacía inicial para que muestre todos los productos.
           searchByText();
 
+          bPreguntar = false;
+
           // alert("¡¡¡Bienvenido otra vez " + nom + "!!!");
           
       }
@@ -158,16 +169,11 @@ $(document).ready(function() {
     var nombre = localStorage.getItem("UserName");
 
     // var nose = "UsuarioX";
-    var borrar = "";
     if(nombre == ""){
-      /*Mostrar datos almacenados*/      
-    // document.getElementById("nombre").innerHTML = nose;
-    // window.location="indexd.php";
     
     /*Borrar los datos en el LocalStorage*/
-    localStorage.setItem("UserName", borrar);
-    localStorage.setItem("UserCode", borrar);
-    localStorage.setItem("saveItemId", borrar);
+    closeWindow();
+
     }else{
       /*Mostrar datos almacenados*/      
     document.getElementById("nombre").innerHTML = nombre;
@@ -323,14 +329,13 @@ function searchByText(){
       },
       error: function(jqXHR, status){
 
-        // errorSearch(jqXHR);
+        // errorSearch();
 
           console.log("Error enviado petición");
           console.log(jqXHR);        
 
       }
   });
-
 }
 
 
@@ -397,8 +402,17 @@ var acom = 0;
     //Limpiar los productos.
     $("#divConteo").empty();
 
+    if(xd > 1){
+
     //Cargar el template.
     var html_ITEM = $("#template_conteo").html();
+
+    }else{
+
+    //Cargar el template.
+    var html_ITEM = $("#template_conteo2").html();
+
+    }
 
     // Reemplazar los comentarios.
     html_ITEM = html_ITEM.replace('<!--', '');
@@ -409,6 +423,7 @@ var acom = 0;
 
     //Agregar el ITEM.
     $("#divConteo").append(html_ITEM);
+
   }
 
 
@@ -497,8 +512,7 @@ function xsd(){
 
   /*Guardar el ID y comprobar que realmente se guardo, para despues mostrar producto */
   function dataItemId(productId){
-    var gg = "si";
-    localStorage.setItem("gggg", gg);
+
     localStorage.setItem("saveItemId", productId);
 
     var prueba = localStorage.getItem("saveItemId");
@@ -506,8 +520,8 @@ function xsd(){
     if(prueba == ""){
 
     }else{
-      // alert(" " + prueba);
-      window.location="productoz.html";
+
+      window.location="productoo.html";
     }
   }
 
@@ -515,12 +529,9 @@ function xsd(){
   function mostrarCarrito(){
     var sesIDD = localStorage.getItem("UserCode");
     if(sesIDD == ""){
-      alert("No cuentas con una sesión activa, error 50126");
-      /*Captura de datos escrito en los inputs*/        
-      var exitz = "";
-      /*Guardando los datos en el LocalStorage*/
-      localStorage.setItem("UserName", exitz);
-      localStorage.setItem("UserCode", exitz);
+      // alert("No cuentas con una sesión activa, error 50126");
+      
+      closeWindow();
     }else{
       // console.log("Iniciando petición mostrar datos carrito");
     $.ajax({
@@ -535,7 +546,7 @@ function xsd(){
           if(resp.error_code == "SessionDoesNotExist"){
               alert("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
-              window.location="productoz.html";
+              window.location="productoo.html";
           }
           else{
 
@@ -558,10 +569,16 @@ function xsd(){
     cart = localStorage.getItem("cartcart");
   
     if(cart == 0){
-      window.location="homeze.html";
+      bPreguntar = false;
+      window.location="homeo.html";
     }else{
-      window.location="cart.html";
+      bPreguntar = false;
+      window.location="carto.html";
     }
   }
+
+
+
+ 
 
   

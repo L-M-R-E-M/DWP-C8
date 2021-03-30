@@ -1,38 +1,49 @@
+document.onkeydown = function(e){
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla == 116){
+    bPreguntar = false;
+  }
+ }
+
+var bPreguntar = true;
+     
+window.onbeforeunload = preguntarAntesDeSalir;
+ 
+function preguntarAntesDeSalir()
+{
+  if (bPreguntar)
+    if(bPreguntar == true){
+      closeWindow();
+    }
+    return;
+}
+
 $(document).ready(function(){    
     $('#cerrarse').click(function(){        
-        // window.close();
-        /*Captura de datos escrito en los inputs*/        
-        var borrar = "";
-        var borrar2 = 0;
-        /*Guardando los datos en el LocalStorage*/
-        localStorage.setItem("SaveCorreo", borrar);
-        localStorage.setItem("SavePass", borrar);
-        localStorage.setItem("UserName", borrar);
-        localStorage.setItem("UserCode", borrar);
-        localStorage.setItem("saveItemId", borrar);
-        localStorage.setItem("x4", borrar2);
-        localStorage.setItem("x7", borrar2);
+        bPreguntar = false;
+      
+        closeWindow();
         
-        window.location="indexz.html";
+        window.location="indexo.html";
     });   
 });
 
-mostrarCarrito();
+function closeWindow(){
+  // window.close();
+  /*Captura de datos escrito en los inputs*/        
+  var borrar = "";
+  var borrar2 = 0;
+  /*Guardando los datos en el LocalStorage*/
+  localStorage.setItem("SaveCorreo", borrar);
+  localStorage.setItem("SavePass", borrar);
+  localStorage.setItem("UserName", borrar);
+  localStorage.setItem("UserCode", borrar);
+  localStorage.setItem("saveItemId", borrar);
+  localStorage.setItem("x4", borrar2);
+  localStorage.setItem("x7", borrar2);
+}
 
-$(document).ready(function() {
-function checarAhora(){
-var nm = localStorage.getItem("gggg");
-var cd = 0;
-if(nm == "si"){
-  cd = 1;
-  localStorage.setItem("kk", cd);
-}else{
-  cd = 0;
-  localStorage.setItem("kk", cd);
-}
-}
-setInterval(checarAhora, 100);
-});
+mostrarCarrito();
 
 /*Checar si hay una sesión activa*/
 $(document).ready(function() {	
@@ -48,9 +59,10 @@ $(document).ready(function() {
   if(check == ""){
     mos = mos + 1;
     if(mos == 1){
+    closeWindow();
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.html";
+    window.location="indexo.html";
   }else{
     mos = mos + 1;
     if(mos == 1){
@@ -59,31 +71,6 @@ $(document).ready(function() {
         
     // localStorage.setItem("gggg", l);
     }
-    
-    
-    /*Se ejecuta cuando cerramos la ventana de google*/
-    // https://es.stackoverflow.com/questions/103956/c%C3%B3mo-detectar-el-evento-del-cierre-de-tu-p%C3%A1gina-web
-  
-  var nm = localStorage.getItem("kk");
-  
-  if(nm == 0){
-  window.addEventListener("beforeunload", function (e) {
-  var confirmationMessage = "\o/";
-
-  (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-  if(confirmationMessage == true){
-          /*Captura de datos escrito en los inputs*/        
-          var exit = "";
-          /*Guardando los datos en el LocalStorage*/
-          localStorage.setItem("UserName", exit);
-          localStorage.setItem("UserCode", exit);
-          localStorage.setItem("saveItemId", exit);
-}
-  return confirmationMessage;                            //Webkit, Safari, Chrome
-});
-
-
-}
 
 
 
@@ -101,9 +88,10 @@ $(document).ready(function() {
   if(check == ""){
     mos = mos + 1;
     if(mos == 1){
+    closeWindow();
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexz.html";
+    window.location="indexo.html";
   }else{
     one = one + 1;
   }
@@ -128,6 +116,8 @@ $(document).ready(function() {
           var code = resp.data.session_id;
           localStorage.setItem("UserCode", code);
 
+          bPreguntar = false;
+
           // alert("¡¡¡Bienvenido otra vez " + nom + "!!!");
           
       }
@@ -145,17 +135,10 @@ $(document).ready(function() {
     /*Obtener datos almacenados*/
     var nombre = localStorage.getItem("UserName");
 
-    // var nose = "UsuarioX";
-    var borrar = "";
     if(nombre == ""){
-      /*Mostrar datos almacenados*/      
-    // document.getElementById("nombre").innerHTML = nose;
-    // window.location="indexd.php";
     
     /*Borrar los datos en el LocalStorage*/
-    localStorage.setItem("UserName", borrar);
-    localStorage.setItem("UserCode", borrar);
-    localStorage.setItem("saveItemId", borrar);
+    closeWindow();
     }else{
       /*Mostrar datos almacenados*/      
     document.getElementById("nombre").innerHTML = nombre;
@@ -176,6 +159,7 @@ $("#search").keypress(function(e) {
 
 //Buscar por texto
 function searchByText(){
+    bPreguntar = false;
 
     icon();
 
@@ -185,7 +169,7 @@ function searchByText(){
 
     // alert(" " + $('#search').val());
 
-    window.location="homeze.html";
+    window.location="homeo.html";
 
 
 }
@@ -230,12 +214,8 @@ function searchByText(){
   function mostrarCarrito(){
     var sesIDD = localStorage.getItem("UserCode");
     if(sesIDD == ""){
-      alert("No cuentas con una sesión activa, error 50126");
-      /*Captura de datos escrito en los inputs*/        
-      var exitz = "";
-      /*Guardando los datos en el LocalStorage*/
-      localStorage.setItem("UserName", exitz);
-      localStorage.setItem("UserCode", exitz);
+      closeWindow();
+      // alert("No cuentas con una sesión activa, error 50126");
     }else{
       console.log("Iniciando petición de mostrar datos carrito actual");
     $.ajax({
@@ -250,7 +230,7 @@ function searchByText(){
           if(resp.error_code == "SessionDoesNotExist"){
               alert("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
-              window.location="productoz.html";
+              window.location="productoo.html";
           }
           else{
 
@@ -265,7 +245,8 @@ function searchByText(){
               localStorage.setItem("cartcart", asdx);
 
               if(asdx == 0){
-                window.location="homeze.html";
+                bPreguntar = false;
+                window.location="homeo.html";
               }else{
 
               render_items(resp);
@@ -300,6 +281,7 @@ function searchByText(){
       html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID2', item.product_id);
       html_ITEM = html_ITEM.replace('ITEM_PRODUCT_ID3', item.product_id);
       html_ITEM = html_ITEM.replace('ITEM_SHORT_DESCRIPTION', item.short_description);
+      html_ITEM = html_ITEM.replace('ITEM_LONG_DESCRIPTION', item.long_description);
       html_ITEM = html_ITEM.replace('ITEM_SMALL_IMAGE', item.images_small);
       html_ITEM = html_ITEM.replace('ITEM_PRICE', item.price);
       html_ITEM = html_ITEM.replace('ITEM_QUANTITY', item.quantity);
@@ -336,7 +318,8 @@ function searchByText(){
 
   function btnCartd(){
     // alert("SE MOSTRARÁ EL CARRITO");
-      window.location="cart.html";
+      bPreguntar = false;
+      window.location="carto.html";
   }
 
   function deletePCart(idProduct){
@@ -449,6 +432,28 @@ $(document).click(function outWindows(event) {
         conte2 = 0;
     }
 });
+
+
+function validar(e) {
+   
+   
+   
+  tecla = (document.all) ? e.keyCode : e.which;
+  if (tecla==8) return true; //Tecla de retroceso (para poder borrar)
+  if (tecla==44) return true; //Coma ( En este caso para diferenciar los decimales )
+  if (tecla==48) return true;
+  if (tecla==49) return true;
+  if (tecla==50) return true;
+  if (tecla==51) return true;
+  if (tecla==52) return true;
+  if (tecla==53) return true;
+  if (tecla==54) return true;
+  if (tecla==55) return true;
+  if (tecla==56) return true;
+  patron = /1/; //ver nota
+  te = String.fromCharCode(tecla);
+  return patron.test(te);
+}
 
     
 

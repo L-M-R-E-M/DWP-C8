@@ -58,10 +58,10 @@
 
                           if(ko == ""){
                             // alert(" " + prueba);
-                              window.location="homeze.html";
+                              window.location="homeo.html";
                             }else{
                               // alert("sde");
-                              window.location="productoz.html";
+                              window.location="productoo.html";
                             }
                       }
                       },       
@@ -89,7 +89,7 @@ $(document).ready(function() {
       //En este  apartado no pasa nada aún
       // alert("entro");
     }else{
-      window.location="homeze.html";
+      window.location="homeo.html";
     }
   }
   setInterval(iniciarSesion, 100);
@@ -147,6 +147,6 @@ $(function() {
 
 $(document).ready(function(){    
   $('#iniciar').click(function(){  
-      window.location="loginze.html";
+      window.location="logino.html";
   });   
 });

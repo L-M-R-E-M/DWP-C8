@@ -1,0 +1,37 @@
+<!-- Aqui tienes un script para bloquear el boton F5 y el boton Recargar -->
+
+<script>
+ document.onkeydown = function(e){
+ tecla = (document.all) ? e.keyCode : e.which;
+ alert(tecla)
+ if (tecla == 116){
+   if (confirm("Seguro que quieres refrescar la página ") == true) {
+      return true;
+    } else {
+      return false;
+   }
+ }
+}
+
+// Para el botón de ATRÁS 
+
+function NoBack(){
+history.go(1)
+}
+</script>
+<!-- Faltaría añadir la llamada a la función en el body. -->
+
+<body OnLoad="NoBack();">
+<!-- https://es.stackoverflow.com/questions/57080/c%C3%B3mo-detener-al-momento-de-refrescar-una-p%C3%A1gina -->
+
+<script>
+     if (window.performance.navigation.type == 1) {
+   if(confirm('Desea Actualizar ? ')){
+     location.href ="https://w3c-test.org/navigation-timing/test_navigation_type_reload.html";
+   }
+else{
+    alert('Correcto');
+  }
+}
+</script>
+<!-- https://es.stackoverflow.com/questions/135798/detectar-cambio-o-recarga-de-pagina -->
