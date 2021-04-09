@@ -114,7 +114,7 @@
                           else{
                               alert("Cambio exitoso");
                               //$("form")[0].reset();
-                              window.location="loginze.html";
+                              window.location="logino.html";
                           }
                       },       
                   });
@@ -241,6 +241,6 @@ $(document).ready(function() {
 
   $(document).ready(function(){    
     $('#iniciar').click(function(){  
-        window.location="loginze.html";
+        window.location="logino.html";
     });   
   });

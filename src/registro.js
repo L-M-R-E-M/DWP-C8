@@ -44,7 +44,7 @@
                     else{
                         alert("Usuario guardado");
                         //$("form")[0].reset();
-                        window.location="loginze.html";
+                        window.location="logino.html";
                     }
                 },       
             });
@@ -201,7 +201,7 @@ $('#pass1').keyup(function(e) {
 
 $(document).ready(function(){    
   $('#iniciar').click(function(){  
-      window.location="loginze.html";
+      window.location="logino.html";
   });   
 });
 

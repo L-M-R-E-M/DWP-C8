@@ -333,7 +333,7 @@ document.onkeydown = function(e){
 
         }else{
 
-        html_ITEM = html_ITEM.replace('ITEM_STATUS', item.status);
+            html_ITEM = html_ITEM.replace('ITEM_STATUS', estatual);
 
         }
 
