@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Product</title>  
+    <title>Checkout</title>  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#" />      
@@ -18,14 +18,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+	<script src="https://www.paypal.com/sdk/js?client-id=Ac_O8O09qOLQVeodML7-3dlyf_zBkQiSRV43AAziX-ubMEP9qm2Bu7wQkCpQRLPQoOchIFwaVcZQ4sxb&currency=MXN&amp;locale=es_MX"></script>
+
   </head>
   <body>
-     <header style="height: 84px">
+     <header style="height: 70px">
         <div class="card-header">
 
             <!-- https://fontawesome.com/v4.7.0/examples/ -->
-
-              <div class="row justify-content-end">
+            
+              <div class="form-row justify-content-end">
                 <form id="form1" name="form1" class="needs-validation" novalidate></form>
                 <div class="col-md-4 mb-3">
                   <div class="input-group">
@@ -48,7 +50,7 @@
               <div class="col-md-auto">
                 <div class="form-row justify-content-center">
                   <div class="text">
-                    <button id="btnCart" class="btn btn-secondary" type="button" onclick="btnCart()">
+                    <button id="btnCart" class="btn btn-secondary" type="button" onclick="btnCartd()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
                     </svg>
@@ -67,7 +69,7 @@
 
         </div>
      </header> 
-    <div style="height: 39px;"></div>
+    <div style="height: 53px;"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -75,7 +77,68 @@
         <div class="card-body">
 
         <!-- Contenido genereado desde la respuesta de la búsqueda.r -->
-        <div class="col" id="divProduct"></div>
+        <h4>Resumen de tu pedido</h4>
+        <br>
+        <div class="row">
+            <div class="col-8">
+                
+                <div class="row">
+                <div class="col-8">
+
+                    <div>
+                        <p><font color="#009975"><span><strong>Resumen de productos y servicios</strong></span></font></p>
+                    </div>
+                    
+                </div>
+                <div class="col-4">
+                  <div class="d-flex justify-content-between">
+                    <!-- <div>
+                        <p><span><strong>&nbsp;</strong></span></p>
+                    </div> -->
+                    <div>
+                        <p><font color="#009975"><span><strong>Total de tu compra</strong></span></font></p>
+                    </div>
+                  
+
+                  </div>
+                </div>
+            </div>  
+             <!-- <hr class="mb-4"> -->
+            </div>
+
+            <div class="col-4">
+                <div class="d-flex justify-content-between">
+                    <div>
+                      <p><font color="#009975"><span><strong>&nbsp;&nbsp;&nbsp;Opciones de pago</strong></span></font></p>
+                    </div>
+            </div>
+          </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-8">
+                        <br>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                  <th scope="col" class="text-center">Cantidad</th>
+                                  <th scope="col" class="text-center">X</th>
+                                  <th scope="col" class="text-center">Pedido</th>
+                                </tr>
+                              </thead>  
+                                <tbody id="divItemsCart"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-4" id="divItemsCartP2"></div>
+                </div>
+            </div>
+            <div class="col-4">
+                <br>
+                <div id="paypal-button-container" style="width: 250px;"></div>
+            </div>
+          </div>
+        
         
         </div>   
     </div>
@@ -83,87 +146,41 @@
         </div>                  
     </div>
 
-    <!-- <div class="col-md-4 col-lg-3 col-xl-3"> -->
+    <div id="template_productCart" style="display: none;">
 
-    <div id="template_product" style="display: none;">
-      <!--
-      
-        <div class="row">
+                     
+                            <!-- <tr>
+                                <td class="text-center">ITEM_QUANTITY</td>
+                                <td class="text-center">X</td>
+                                <td class="text-center">ITEM_SHORT_DESCRIPTION</td>
+                            </tr> -->
 
-            <div class="col">
-              <div class="card-body">
-                <div class="row mb-4">
-                  <div class="col-6">
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="text-right">
-                      <a href="#!" onClick="dataMoveImage(1);" id="newImg1">                             
-                      <img id="1" class="img-fluid w-50" src="ITEM_SMALL_IMAGE1"> 
-                    </a>
-                    <p></p>
-                    <a href="#!" onClick="dataMoveImage(2);" id="newImg2">                             
-                      <img id="2" class="img-fluid w-50" src="ITEM_SMALL_IMAGE2"> 
-                    </a>
-                    <p></p>
-                    <a href="#!" onClick="dataMoveImage(3);" id="newImg3">                             
-                      <img id="3" class="img-fluid w-50" src="ITEM_SMALL_IMAGE3"> 
-                    </a>
-                    <p></p>
-                    <a href="#!" onClick="dataMoveImage(4);" id="newImg4">                             
-                      <img id="4" class="img-fluid w-50" src="ITEM_SMALL_IMAGE4"> 
-                    </a>
-                    </div>
-                    </div>
-                    <div class="col-8">
-                      <p></p>
-                    <a href="#!">                             
-                      <img id="imgLarge" class="img-fluid w-100" src="ITEM_LARGE_IMAGE"> 
-                    </a>
-                    </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <br/>
-                        <h5><font color="#009975">ITEM_SHORT_DESCRIPTION</font></h5>                                                       
-                        <p class="text-muted text-uppercase small">ITEM_LONG_DESCRIPTION</p>
-                        <h6>Descripción detallada</h6>                                                       
-                        <p class="text-muted text-uppercase small">ITEM_HTML_DETAILS</p>
-                      </div>
-                      <div>
-                        <br/>
-                        <p><span><strong>$ITEM_PRICE</strong></span></p>
-                      </div>
-                      
-                      <div>
-                        <br><br><br><br>
-                        
-                        <div class="col-md-auto">
-                          <div class="input-group">
-                          <label for="cantidad">Cantidad = &nbsp;</label>
-                          <input name="cantidad" type="text" class="form-control" id="cantidad" placeholder="" value="1" onKeyPress="return validar(event)" maxlength="2" required>
-                          </div><br>
-                        </div>
-                        <div class="col-md-auto">
-                          <div class="text">
-                            <button class="btn btn-success" type="button" onclick="addCart()">Añadir al carrito</button>
-                          </div>
+      </div>
+
+      <div id="template_productCartP2" style="display: none;">
+        
+        
+          <!-- <div class="row">
+              <div class="col">
+              <div class="col-4">
+                <div class="card-body">
+                  <div class="row mb-4">
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <p>Sub&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ITEM_SUB_TOTAL</p>
+                          <p>IVA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ITEM_TAXES</p>
+                          <p>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green"><span><strong>$ITEM_TOTAL</strong></span></font></p>
                         </div>
                       </div>
-                    
-
-                    </div>
                   </div>
                 </div>
-                <hr class="mb-4">  
-              </div>
-          </div>
+            </div>
+            </div>
+        </div> -->
 
-      </div> -->
-    </div>
+      </div>
 
    
-    <script src="./src/productoo.js"></script> 	 
+    <script src="./src/checkout.js"></script> 	 
   </body>
 </html>

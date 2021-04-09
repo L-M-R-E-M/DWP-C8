@@ -108,6 +108,7 @@ $(document).ready(function() {
       success: function(resp) {
         if(resp.error_code == "EmailAndPasswordDoesNotMatch"){
           alert("Usuario y/o contraseña incorrectos");
+          closeWindow();
       }
       else{
           var nom = resp.data.customer.first_name;
@@ -230,7 +231,8 @@ function searchByText(){
           if(resp.error_code == "SessionDoesNotExist"){
               alert("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
-              window.location="productoo.html";
+              // window.location="productoo.html";
+              closeWindow();
           }
           else{
 
@@ -339,6 +341,7 @@ function searchByText(){
             if(resp.error_code == "SessionDoesNotExist" || resp.error_code == "ItemDoesNotExist"
             || resp.error_code == "ItemOrderDoesNotExist"){
                 alert(" " + resp.error_code);
+                closeWindow();
             }
             else{
                 mostrarCarrito();
@@ -390,6 +393,7 @@ function searchByText(){
                 || resp.error_code == "ItemDoesNotExist" || resp.error_code == "ItemOrderDoesNotExist"
                 || resp.error_code == "MandatoryFields"){
                     alert(" " + resp.error_code);
+                    closeWindow();
                 }
                 else{
                     conte = 0;
@@ -453,6 +457,20 @@ function validar(e) {
   patron = /1/; //ver nota
   te = String.fromCharCode(tecla);
   return patron.test(te);
+}
+
+function goToPayNow(){
+
+  bPreguntar = false;
+
+  window.location="checkout.html";
+
+}
+
+function btnProduct(){
+  // alert("ok");
+  bPreguntar = false;
+  window.location="historial.html";
 }
 
     

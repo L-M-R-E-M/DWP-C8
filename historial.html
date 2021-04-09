@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Home</title>  
+    <title>Historial</title>  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="#" />      
@@ -40,9 +40,9 @@
               </form>
               <div class="col-md-auto">
                 <div class="text-right">
-                <a href="#!" onClick="btnProduct()"> 
-                <div class="card-header">Hola, <label type="text" id="nombre"></label></div>
-                </a>
+                    <a href="#!" onClick="btnProduct()"> 
+                        <div class="card-header">Hola, <label type="text" id="nombre"></label></div>
+                        </a>
                 </div>
               </div>
               <div class="col-md-auto">
@@ -64,18 +64,10 @@
                   </div>
               </div>
               </div>
-              
-            <br>
-
-            <div class="justify-content-start">
-                <!-- Contenido genereado desde la respuesta del servidor. -->
-                <div class="row" id="enlistarCategorias">
-                </div>
-            </div>
 
         </div>
      </header> 
-    <div style="height: 101px;"></div>
+    <div style="height: 53px;"></div>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -83,118 +75,66 @@
         <div class="card-body">
 
         <!-- Contenido genereado desde la respuesta de la búsqueda.r -->
-        <div class="col-8" id="divError"></div>
-        <div class="col" id="divConteo"></div>
-        <div class="row justify-content-center">
-        <div class="col-6" id="divItems1"></div>
-        <div class="col-6" id="divItems2"></div>
+        <h4>Historial de pedidos</h4>
+        <br>
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col" class="text-center">Fecha de compra</th>
+                      <th scope="col" class="text-center">Total</th>
+                      <th scope="col" class="text-center">Método de pago</th>
+                      <th scope="col" class="text-center">Estatus</th>
+                      <th scope="col" class="text-center">Pedido</th>
+                      <th scope="col" class="text-center">Comentarios</th>
+                    </tr>
+                  </thead>  
+                    <tbody id="divItemsCart"></tbody>
+            </table>
         </div>
-        
-        </div>   
+        <div class="col" id="divItemsCartP2"></div>  
     </div>
             </div>       
         </div>                  
     </div>
 
+    <div id="template_productCart" style="display: none;">
 
-    <div id="template_conteo" style="display: none;">
-      
-      
-        
-                      <!-- <div>
-                        <h1><font color="#009975">ITEM_CONTEO_PRODUCTOS, productos encontrados</font></h1>
-                      </div>
-                <hr class="mb-4">   -->
-   
-    </div>
+                     
+                            <!-- <tr>
+                                <td class="text-center">ITEM_ORDER</td>
+                                <td class="text-center">$&nbsp;ITEM_TOTAL</td>
+                                <td class="text-center">PayPal</td>
+                                <td class="text-center">ITEM_STATUS</td>
+                                <td class="text-center">ITEM_PAYPAL</td>
+                                <td class="text-center">ITEM_COMMENTS</td>
+                            </tr> -->
 
-
-
-    <div id="template_conteo2" style="display: none;">
-      
-      
-        
-      <!-- <div>
-        <h1><font color="#009975">ITEM_CONTEO_PRODUCTOS, producto encontrado</font></h1>
       </div>
-      <hr class="mb-4">   -->
 
-    </div>
-
-
-
-    <div id="ningunaBusqueda" style="display: none;">
-          
-                  <!-- <div class="row">
-
-            <div class="col">
-              <div class="card-body">
-                <div class="row mb-4">
-                  <div class="col-md-4 col-lg-3 col-xl-3">
-                    <a href="logino.html onClick="bPreguntar = false;">                             
-                      <img class="img-fluid w-100" src="https://thumbs.dreamstime.com/b/lupa-trastornada-s%C3%ADmbolo-no-encontrado-lindo-y-s-fracasado-122205900.jpg"> 
-                    </a>
-                  </div>
-                  <div class="col-md-5 col-lg-9 col-xl-9">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <br/>
-                        <h5>LO SENTIMOS</h5>                                                       
-                        <p class="text-muted text-uppercase small">No se pudo encontrar ningún dato de: "ITEM_DATA" :,V</p>
-                      </div>
-                      <div>
-                        <br/>
-                        <p><span><strong></strong></span></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="mb-4">  
-              </div>
-          </div>
-
-      </div> -->
-    </div>
-
-
-
-    <div id="template_item" style="display: none;">
-      <!--
+      <div id="template_conteo" style="display: none;">
       
-        <div class="row">
+      
+        
+        <!-- <div>
+          <p><font color="#009975">ITEM_CONTEO_PRODUCTOS, pediodos encontrados</font></p>
+        </div>-->
 
-            <div class="col">
-              <div class="card-body">
-                <div class="row mb-4">
-                  <div class="col-md-4 col-lg-3 col-xl-3">
-                    <a href="#!" onClick="bPreguntar = false;dataItemId(ITEM_PRODUCT_ID);">                             
-                      <img class="img-fluid w-100" src="ITEM_SMALL_IMAGE"> 
-                    </a>
-                  </div>
-                  <div class="col-md-5 col-lg-9 col-xl-9">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <br/>
-                        <a href="#!" onClick="bPreguntar = false;dataItemId(ITEM_PRODUCT_ID2);"> 
-                        <h5>ITEM_SHORT_DESCRIPTION</h5>     
-                        </a>                                                
-                        <p class="text-muted text-uppercase small">ITEM_LONG_DESCRIPTION</p>
-                      </div>
-                      <div>
-                        <br/>
-                        <p><span><strong>$ITEM_PRICE</strong></span></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr class="mb-4">  
-              </div>
-          </div>
+        </div>
 
-      </div> -->
-    </div>
+
+
+        <div id="template_conteo2" style="display: none;">
+
+
+
+        <!-- <div>
+        <p><font color="#009975">ITEM_CONTEO_PRODUCTOS, pedido encontrado</font></p>
+        </div>-->
+
+        </div>
 
    
-    <script src="./src/homeo.js"></script> 	 
+    <script src="./src/historial.js"></script> 	 
   </body>
 </html>

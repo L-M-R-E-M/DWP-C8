@@ -40,7 +40,9 @@
               </form>
               <div class="col-md-auto">
                 <div class="text-right">
-                <div class="card-header">Hola, <label type="text" id="nombre"></label></div>
+                  <a href="#!" onClick="btnProduct()"> 
+                    <div class="card-header">Hola, <label type="text" id="nombre"></label></div>
+                    </a>
                 </div>
               </div>
               <div class="col-md-auto">
@@ -54,7 +56,7 @@
                     </button>
                   </div>
                 </div>
-                  <p><span><strong>$<label type="text" id="total"></label>.00 MXN</strong></span></p>
+                  <p><span><strong>$<label type="text" id="total"></label>&nbsp;MXN</strong></span></p>
               </div>
               <div class="col-md-auto">
                   <div class="text-right">
@@ -73,6 +75,8 @@
         <div class="card-body">
 
         <!-- Contenido genereado desde la respuesta de la búsqueda.r -->
+        <h4>Carrito de compras</h4>
+        <br>
         <div class="row">
             <div class="col-8">
                 
@@ -90,13 +94,13 @@
                         <p><span><strong>&nbsp;&nbsp;&nbsp;</strong></span></p>
                     </div>
                     <div>
-                      <p><span><strong>P. Unitario</strong></span></p>
+                      <p><font color="#009975"><span><strong>P. Unitario</strong></span></font></p>
                     </div>
                     <div>
-                        <p><span><strong>Cantidad</strong></span></p>
+                        <p><font color="#009975"><span><strong>Cantidad</strong></span></font></p>
                     </div>
                     <div>
-                        <p><span><strong>Sub Total</strong></span></p>
+                        <p><font color="#009975"><span><strong>Sub Total</strong></span></font></p>
                     </div>
                   
 
@@ -109,7 +113,7 @@
             <div class="col-4">
                 <div class="d-flex justify-content-between">
                     <div>
-                      <p><span><strong>&nbsp;&nbsp;&nbsp;Resumen de tu carrito</strong></span></p>
+                      <p><font color="#009975"><span><strong>&nbsp;&nbsp;&nbsp;Resumen de tu carrito</strong></span></font></p>
                     </div>
             </div>
           </div>
@@ -168,7 +172,7 @@
 
                         <div>
                           <br/>
-                          <p><span><strong>$ITEM_PRICE</strong></span></p>
+                          <p><font color="green"><span><strong>$ITEM_PRICE</strong></span></font></p>
                         </div>
                         
                         <div>
@@ -192,7 +196,7 @@
 
                         <div>
                           <br/>
-                          <p><span><strong>$ITEM_PRICE_SUB</strong></span></p>
+                          <p><font color="green"><span><strong>$ITEM_PRICE_SUB</strong></span></font></p>
                         </div>
                       
   
@@ -219,10 +223,10 @@
                         <div>
                           <p>Sub&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ITEM_SUB_TOTAL</p>
                           <p>IVA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ITEM_TAXES</p>
-                          <p>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ITEM_TOTAL</p>
+                          <p>Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="green"><span><strong>$ITEM_TOTAL</strong></span></font></p>
                           <br/>
                           <div class="text">
-                            <button class="btn btn-success" type="button" onclick="goToPay()">Proceder al pago</button>
+                            <button class="btn btn-success" type="button" onclick="goToPayNow()">Proceder al pago</button> 
                           </div>
                         </div>
                       </div>

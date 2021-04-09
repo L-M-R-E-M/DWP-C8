@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AUlLJv_ohrRXy71A6QGU704lWsh1KNmUBaXPkYvrTSbiKZzWChaAsfabmSJQCKfEgm6kgehTMWnbRmjQ&currency=MXN&amp;locale=es_MX">
+	</script>
+
+	<script>
+		
+		paypal.Buttons({
+		
+			locale: 'en_MX',	
+			style: {
+				size: 'responsive',
+				color: 'gold',
+				shape: 'rect',
+				label: 'pay'
+			},
+		
+			createOrder: function(data, actions) {								
+				return actions.order.create({					
+					purchase_units: [{
+						amount: {
+							value: $("#txtAmount").val()
+						},
+						description: 'Compra en Store UTAGS México',
+						item: {
+							name: 'Compra en Store UTAGS México',
+							unit_amount: $("#txtAmount").val(),
+							quantity: '1'
+						}
+					}] 
+					, application_context: { 
+						shipping_preference: 'NO_SHIPPING',
+						brand_name: 'Store UTAGS México' 
+					} 
+				}); 
+			}, 
+
+			onApprove: function(data, actions) {					
+				return actions.order.capture().then(function(details) {						
+					console.log(details);
+					alert("Pagado");
+
+					//Hacer la petición al servicio 35.167.62.109/storeutags/order/create_order 					
+
+				});
+			}, 
+
+			onError: function (err) {					
+				alert("Ocurrió un errror en PayPal. Intenta nuevamente.");	
+			}, 
+
+			onCancel: function (data, actions) {					
+				alert("Tu pago no fue recibido. Intenta nuevamente.");					
+			}
+			
+		}).render('#paypal-button-container');
+
+	</script>
+
+
+</head>
+<body>
+	<p>Total a pagar:</p>
+	<input type="text" name="txtAmount" id="txtAmount"><br/><br/>		
+	<div id="paypal-button-container" style="width: 300px;"></div>
+</body>
+</html>

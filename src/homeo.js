@@ -85,7 +85,7 @@ $(document).ready(function() {
 
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexo.html";
+    window.location="logino.html";
   }else{
     mos = mos + 1;
     if(mos == 1){
@@ -118,7 +118,7 @@ $(document).ready(function() {
 
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexo.html";
+    window.location="logino.html";
   }else{
     one = one + 1;
   }
@@ -135,6 +135,7 @@ $(document).ready(function() {
       success: function(resp) {
         if(resp.error_code == "EmailAndPasswordDoesNotMatch"){
           alert("Usuario y/o contraseña incorrectos");
+          closeWindow();
       }
       else{
           var nom = resp.data.customer.first_name;
@@ -546,7 +547,8 @@ function xsd(){
           if(resp.error_code == "SessionDoesNotExist"){
               alert("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
-              window.location="productoo.html";
+              // window.location="productoo.html";
+              closeWindow();
           }
           else{
 
@@ -575,6 +577,12 @@ function xsd(){
       bPreguntar = false;
       window.location="carto.html";
     }
+  }
+
+  function btnProduct(){
+    // alert("ok");
+    bPreguntar = false;
+    window.location="historial.html";
   }
 
 

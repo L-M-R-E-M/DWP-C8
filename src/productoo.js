@@ -60,7 +60,7 @@ $(document).ready(function() {
     closeWindow();
     alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexo.html";
+    window.location="logino.html";
   }else{
     mos = mos + 1;
     if(mos == 1){
@@ -84,7 +84,7 @@ $(document).ready(function() {
     closeWindow();
     // alert("No cuentas con una sesión activa, error 50126");
     }
-    window.location="indexo.html";
+    window.location="logino.html";
   }else{
     one = one + 1;
   }
@@ -101,6 +101,7 @@ $(document).ready(function() {
       success: function(resp) {
         if(resp.error_code == "EmailAndPasswordDoesNotMatch"){
           alert("Usuario y/o contraseña incorrectos");
+          closeWindow();
       }
       else{
           var nom = resp.data.customer.first_name;
@@ -362,8 +363,9 @@ function addCart(){
              resp.error_code == "InavlidQuantity" || resp.error_code == "MandatoryFilds"){
               alert("¡¡Upps... ocurrio un problema al momento de añadir al carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de añadir al carrito.!!");
-              bPreguntar = false;
-              window.location="productoo.html";
+              // bPreguntar = false;
+              // window.location="productoo.html";
+              closeWindow();
           }
           else{
             icon();
@@ -396,7 +398,8 @@ $(document).ready(function() {
           if(resp.error_code == "SessionDoesNotExist"){
               alert("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
               console.log("¡¡Upps... ocurrio un problema al momento de mostrar el carrito.!!");
-              window.location="productoo.html";
+              // window.location="productoo.html";
+              closeWindow();
           }
           else{
             var asdx = resp.data.items_quantity;
@@ -449,5 +452,11 @@ function validar(e) {
   patron = /1/; //ver nota
   te = String.fromCharCode(tecla);
   return patron.test(te);
+}
+
+function btnProduct(){
+  // alert("ok");
+  bPreguntar = false;
+  window.location="historial.html";
 }
 

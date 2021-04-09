@@ -393,3 +393,7 @@ function dataItemIdindex(tnt){
 function btnCartds(){
   window.location="logino.html";
 }
+
+function btnProduct(){
+  window.location="logino.html";
+}
