@@ -6,7 +6,7 @@ $(document).ready(function(){
         localStorage.setItem("x1", borrar2);
         localStorage.setItem("x2", borrar2);  
 
-        window.location="logino.html";
+        window.location="loginou.html";
     });   
 });
 
@@ -385,15 +385,15 @@ function dataItemIdindex(tnt){
 
   }else{
     console.log("El ID que se quieré buscar es el: " + tnt);
-    window.location="logino.html";
+    window.location="loginou.html";
   }
 }
 
 
 function btnCartds(){
-  window.location="logino.html";
+  window.location="loginou.html";
 }
 
 function btnProduct(){
-  window.location="logino.html";
+  window.location="loginou.html";
 }

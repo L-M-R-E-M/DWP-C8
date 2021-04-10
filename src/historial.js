@@ -63,7 +63,7 @@ document.onkeydown = function(e){
       closeWindow();
       alert("No cuentas con una sesión activa, error 50126");
       }
-      window.location="logino.html";
+      window.location="loginou.html";
     }else{
       mos = mos + 1;
       if(mos == 1){
@@ -92,7 +92,7 @@ document.onkeydown = function(e){
       closeWindow();
       alert("No cuentas con una sesión activa, error 50126");
       }
-      window.location="logino.html";
+      window.location="loginou.html";
     }else{
       one = one + 1;
     }

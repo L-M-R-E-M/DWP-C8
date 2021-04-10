@@ -147,6 +147,6 @@ $(function() {
 
 $(document).ready(function(){    
   $('#iniciar').click(function(){  
-      window.location="logino.html";
+      window.location="loginou.html";
   });   
 });
